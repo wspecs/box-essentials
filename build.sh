@@ -11,6 +11,7 @@ if [ ! /etc/wspecs/functions.sh ]; then
 fi
 source /etc/wspecs/functions.sh
 source preflight.sh
+source config.sh
 source encoding.sh
 
 hide_output apt-get update
