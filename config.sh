@@ -73,10 +73,10 @@ if [ -z "${STORAGE_ROOT:-}" ]; then
 fi
 
 # Create the STORAGE_USER and STORAGE_ROOT directory if they don't already exist.
-# If the STORAGE_ROOT is missing the mailinabox.version file that lists a
+# If the STORAGE_ROOT is missing the wspecsbox.version file that lists a
 # migration (schema) number for the files stored there, assume this is a fresh
 # installation to that directory and write the file to contain the current
-# migration number for this version of Mail-in-a-Box.
+# migration number for this version of wspecsbox.
 if ! id -u $STORAGE_USER >/dev/null 2>&1; then
   useradd -m $STORAGE_USER
 fi
