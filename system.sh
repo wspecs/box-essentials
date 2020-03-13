@@ -66,11 +66,6 @@ hide_output add-apt-repository -y ppa:certbot/certbot
 echo Updating system packages...
 hide_output apt-get update
 apt_get_quiet upgrade
-
-# Old kernels pile up over time and take up a lot of disk space, and because of Mail-in-a-Box
-# changes there may be other packages that are no longer needed. Clear out anything apt knows
-# is safe to delete.
-
 apt_get_quiet autoremove
 
 # ### Install System Packages
