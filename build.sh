@@ -1,5 +1,5 @@
 #!/bin/bash
-echo Installing essentials packages...
+echo 'running wspecs/box-essentials...'
 
 if [ ! /etc/wspecs/functions.sh ]; then
   echo wspecs/box-functions is required
