@@ -21,11 +21,7 @@ update_global_config() {
 
 # The box needs a name.
 if [ -z "${PRIMARY_HOSTNAME:-}" ]; then
-  if [ -z "${DEFAULT_PRIMARY_HOSTNAME:-}" ]; then
-    DEFAULT_DOMAIN_GUESS=$(echo $(get_default_hostname) | sed -e 's/^box\.//')
-    update_global_config DEFAULT_PRIMARY_HOSTNAME=box.$DEFAULT_DOMAIN_GUESS
-  fi
-  update_global_config PRIMARY_HOSTNAME=$DEFAULT_PRIMARY_HOSTNAME
+  update_global_config PRIMARY_HOSTNAME=$(get_default_hostname)
 fi
 
 # If the machine is behind a NAT, inside a VM, etc., it may not know
@@ -63,19 +59,6 @@ if [[ -z "$PRIVATE_IP" && -z "$PRIVATE_IPV6" ]]; then
   route
   echo
   exit
-fi
-
-# Automatic configuration, e.g. as used in our Vagrant configuration.
-if [ "$PUBLIC_IP" = "auto" ]; then
-  # Use a public API to get our public IP address, or fall back to local network configuration.
-  update_global_config PUBLIC_IP=$(get_publicip_from_web_service 4 || get_default_privateip 4)
-fi
-if [ "$PUBLIC_IPV6" = "auto" ]; then
-  # Use a public API to get our public IPv6 address, or fall back to local network configuration.
-  update_global_config PUBLIC_IPV6=$(get_publicip_from_web_service 6 || get_default_privateip 6)
-fi
-if [ "$PRIMARY_HOSTNAME" = "auto" ]; then
-  update_global_config PRIMARY_HOSTNAME=$(get_default_hostname)
 fi
 
 # Set STORAGE_USER and STORAGE_ROOT to default values (user-data and /home/user-data), unless
