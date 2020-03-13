@@ -8,7 +8,7 @@ CURRENT_FOLDER=$(pwd)
 
 if [ ! -f "$WSPECS_CONFIG_FILE"  ]; then
   echo creating config file...
-	mkdir -p /etc/wspecs
+  mkdir -p /etc/wspecs
   cat > $WSPECS_CONFIG_FILE <<EOL
 # This configuration file capture the global configs for this wspecs box.
 EOL
@@ -58,7 +58,7 @@ if [[ -z "$PRIVATE_IP" && -z "$PRIVATE_IPV6" ]]; then
   hostname -I
   route
   echo
-  exit
+  exit 1
 fi
 
 # Set STORAGE_USER and STORAGE_ROOT to default values (user-data and /home/user-data), unless
