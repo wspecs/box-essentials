@@ -13,6 +13,8 @@ if [ ! -f "$WSPECS_CONFIG_FILE"  ]; then
 # This configuration file capture the global configs for this wspecs box.
 EOL
 fi
+# add helper python files to edit config
+cp editconf.py /usr/local/bin/edit_config
 
 update_global_config() {
   add_config $1 $WSPECS_CONFIG_FILE
@@ -68,5 +70,17 @@ if [ -z "${STORAGE_USER:-}" ]; then
 fi
 if [ -z "${STORAGE_ROOT:-}" ]; then
   update_global_config STORAGE_ROOT=$([[ -z "${DEFAULT_STORAGE_ROOT:-}" ]] && echo "/home/$STORAGE_USER" || echo "$DEFAULT_STORAGE_ROOT")
+fi
+
+# Create the STORAGE_USER and STORAGE_ROOT directory if they don't already exist.
+# If the STORAGE_ROOT is missing the mailinabox.version file that lists a
+# migration (schema) number for the files stored there, assume this is a fresh
+# installation to that directory and write the file to contain the current
+# migration number for this version of Mail-in-a-Box.
+if ! id -u $STORAGE_USER >/dev/null 2>&1; then
+  useradd -m $STORAGE_USER
+fi
+if [ ! -d $STORAGE_ROOT ]; then
+  mkdir -p $STORAGE_ROOT
 fi
 echo
