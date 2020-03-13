@@ -10,6 +10,8 @@ if [ ! /etc/wspecs/functions.sh ]; then
   exit 1
 fi
 source /etc/wspecs/functions.sh
+source preflight.sh
+source encoding.sh
 
 hide_output apt-get update
 install_once tmux
