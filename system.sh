@@ -59,12 +59,7 @@ hide_output add-apt-repository -y ppa:certbot/certbot
 # Install the latest php ppa repository
 hide_output add-apt-repository -y ppa:ondrej/php
 
-if [ ! -f $HOME/mysql-apt-config_0.8.10-1_all.deb ]; then
-  cd $HOME
-  curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
-  dkpg -i mysql-apt-config_0.8.10-1_all.deb
-  goto_working_directory
-fi
+add-apt-repository -y ppa:lars-tangvald/mysql-8.0
 
 # ### Update Packages
 
