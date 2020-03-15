@@ -57,6 +57,11 @@ hide_output add-apt-repository -y universe
 # Install the certbot PPA.
 hide_output add-apt-repository -y ppa:certbot/certbot
 
+# Install the latest php ppa repository
+hide_output add-apt-repository -y ppa:certbot/certbot
+
+add-apt-repository -y ppa:ondrej/php
+
 # ### Update Packages
 
 # Update system packages to make sure we have the latest upstream versions
