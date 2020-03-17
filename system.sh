@@ -129,9 +129,9 @@ dd if=/dev/random of=/dev/urandom bs=1 count=32 2> /dev/null
 pollinate  -q -r
 
 ### Add ssh key
-if [ ! -f /root/.ssh/id_rsa_foo ]; then
+if [ ! -f /root/.ssh/id_rsa ]; then
   echo 'Creating SSH key for key…'
-  ssh-keygen -t rsa -b 2048 -a 100 -f /root/.ssh/id_rsa_foo -N '' -q
+  ssh-keygen -t rsa -b 2048 -a 100 -f /root/.ssh/id_rsa -N '' -q
 fi
 
 # ### Package maintenance
