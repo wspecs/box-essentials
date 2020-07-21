@@ -7,9 +7,9 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-# Check that we are running on Ubuntu 18.04 LTS (or 18.04.xx).
-if [ "`lsb_release -d | sed 's/.*:\s*//' `" != "Ubuntu 18.04 LTS" ]; then
-  echo "wspecs-box only supports being installed on Ubuntu 18.04, sorry. You are running:"
+# Check that we are running on Ubuntu 20.04 LTS (or 20.04.xx).
+if [ "`lsb_release -d | sed 's/.*:\s*//' `" != "Ubuntu 20.04 LTS" ]; then
+  echo "wspecs-box only supports being installed on Ubuntu 20.04, sorry. You are running:"
   echo
   lsb_release -d | sed 's/.*:\s*//'
   echo
