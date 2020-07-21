@@ -54,7 +54,7 @@ fi
 hide_output add-apt-repository -y universe
 
 # Install the certbot PPA.
-hide_output add-apt-repository -y ppa:certbot/certbot
+apt_install certbot
 
 # Install the latest php ppa repository
 hide_output add-apt-repository -y ppa:ondrej/php
@@ -209,7 +209,7 @@ fi #NODOC
 # * The listen-on directive in named.conf.options restricts `bind9` to
 #   binding to the loopback interface instead of all interfaces.
 apt_install bind9
-edit_config /etc/default/bind9 \
+edit_config /etc/default/named \
   "OPTIONS=\"-u bind -4\""
 if ! grep -q "listen-on " /etc/bind/named.conf.options; then
   # Add a listen-on directive if it doesn't exist inside the options block.
@@ -228,7 +228,7 @@ echo "nameserver 127.0.0.1" > /etc/resolv.conf
 
 # Restart the DNS services.
 
-restart_service bind9
+restart_service named
 systemctl restart systemd-resolved
 
 # ### Fail2Ban Service
