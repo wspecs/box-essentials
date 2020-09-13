@@ -8,7 +8,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Check that we are running on Ubuntu 20.04 LTS (or 20.04.xx).
-if [ "`lsb_release -d | sed 's/.*:\s*//' `" != "Ubuntu 20.04 LTS" ]; then
+CURRENT_SYSTEM="`lsb_release -d | sed 's/.*:\s*//' `"
+ACCEPTED_PLATFORM="Ubuntu 20.04"
+
+if [[ "$CURRENT_SYSTEM" != *"$ACCEPTED_PLATFORM"* ]]; then
   echo "wspecs-box only supports being installed on Ubuntu 20.04, sorry. You are running:"
   echo
   lsb_release -d | sed 's/.*:\s*//'
